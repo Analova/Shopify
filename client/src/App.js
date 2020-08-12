@@ -1,4 +1,5 @@
 import React from "react";
+import ShoppingList from "./components/ShoppingList";
 
 import AppNavbar from "./components/AppNavbar";
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <AppNavbar />
+      <ShoppingList />
     </div>
   );
 }
