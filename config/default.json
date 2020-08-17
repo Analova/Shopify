@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://amazingUser:amazing12345@cluster0.jgd3a.mongodb.net/Shopify?retryWrites=true&w=majority",
+  "jwtSecret": "sl_myJwtSecret"
+}
