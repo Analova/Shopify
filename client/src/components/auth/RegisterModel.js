@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { register } from "../../actions/authActions";
+import { clearErrors } from "../../actions/errorActions";
 
 class RegisterModal extends Component {
   state = {
@@ -24,7 +25,7 @@ class RegisterModal extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    const { error } = this.props;
+    const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       //Check for register error
       if (error.id === "REGISTER_FAIL") {
@@ -33,9 +34,18 @@ class RegisterModal extends Component {
         this.setState({ msg: null });
       }
     }
+
+    // If authenticated, close modal
+    if (this.state.modal) {
+      if (isAuthenticated) {
+        this.toggle();
+      }
+    }
   }
 
   toggle = () => {
+    //Clear errors
+    this.props.clearErrors();
     this.setState({
       modal: !this.state.modal,
     });
@@ -118,4 +128,6 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { register })(RegisterModal);
+export default connect(mapStateToProps, { register, clearErrors })(
+  RegisterModal
+);
